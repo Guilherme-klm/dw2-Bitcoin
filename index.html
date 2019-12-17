@@ -11,15 +11,31 @@
   </head>
   <body>
 
-    <h1>Olá, mundo!</h1>
     <div id="bitcoin">
         
         <button type="button" @click.prevent="buscaMoeda()" class="btn btn-info"> Procurar Moeda </button>
 
         <ul>
-          <li> {{}} </li>
+          <li> {{ dadosMoeda.nome }} </li>
+          <li> {{ dadosMoeda.preco }} </li>
+          <li> {{ dadosMoeda.cod }} </li>
+          <li> {{ dadosMoeda.descricao }} </li>
         </ul>
     </div>
+
+    <div class="card text-center">
+	  <div class="card-header">
+	    Destaque
+	  </div>
+	  <div class="card-body">
+	    <h5 class="card-title">Título especial</h5>
+	    <p class="card-text">Com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional.</p>
+	    <a href="#" class="btn btn-primary">Visitar</a>
+	  </div>
+	  <div class="card-footer text-muted">
+	    2 dias atrás
+	  </div>
+</div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -30,40 +46,34 @@
       const bitcoin = new Vue ({
         el: "#bitcoin",
         data: {
-          idMoeda: '',
+          dadosMoeda: {},
           nomeMoeda: '',
           precoAtual: 0,
+          codMoeda: '',
+          descricaoMoeda: ''
         },
           methods: {
             buscaMoeda() {
-              const rp = require('request-promise');
-              const requestOptions = {
-                method: 'GET',
-                uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-                qs: {
-                  'id': '1, 1027',
-                },
-                headers: {
-                  'X-CMC_PRO_API_KEY': '5072f061-c39e-444c-a888-d58e52e58793'
-                },
-                json: true,
-                gzip: true
-              };
+              const api = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+    				axios.get(api).then((response)=>{
+    					this.nomeMoeda = response.data.chartName;
+    					this.precoAtual = response.data.bpi.USD.rate;
+    					this.codMoeda = response.data.bpi.USD.code;
+    					this.descricaoMoeda = response.data.bpi.USD.description;
 
-              rp(requestOptions).then(response => {
-                this.idMoeda = response.data.id;
-                this.nomeMoeda = response.data.name;
-                this.precoAtual = response.data.quote.USD.price;
-                console.log(this.idMoeda);
-                console.log(this.nomeMoeda);
-                console.log(this.precoAtual);
-                console.log('API call response:', response);
-              }).catch((err) => {
-                console.log('API call error:', err.message);
-              });
-            }
+    					this.dadosMoeda = {
+    						"nome": this.nomeMoeda,
+    						"preco": this.precoAtual,
+    						"cod": this.codMoeda,
+    						"descricao": this.descricaoMoeda
+    					};
+
+    				}).catch(( error) =>{
+    					console.log('ERR:' + error);
+    				})
           }
-      })
+      	}
+      });
     </script>
   </body>
 </html>
