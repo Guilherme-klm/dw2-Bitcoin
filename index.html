@@ -7,15 +7,19 @@
 
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Olá, mundo!</title>
+    <link rel="stylesheet" href="cssBitcoin.css">
+	<title>Olá, mundo!</title>
+
   </head>
   <body>
 
-<div class="container"> 
+<div class="container">
+
 
 <div id="bitcoin">
-    <div class="card text-center mb-3 mt-3">
-	  
+<div class="d-flex justify-content-center">
+    <div class="card text-center mb-3 mt-3 tamanhoCard">
+		  
 	<div class="card-header">
 	    <p> Bitcoin </p>
 	  </div>
@@ -24,15 +28,17 @@
           <dd> Preço: {{ dadosBTC.precoBTC }} </dd>
           <dd> Código: BTC </dd>
           <dd> Descrição: United States Dollar </dd>
-    	  <button type="button" class="btn btn-info" @click.prevent="buscaBTC()"> Atualizar Preço </button>
+    	  <button type="button" class="btn btn-info tamanhaoInput" @click.prevent="buscaBTC()"> Atualizar Preço </button>
     	</div>
 
 	<div class="card-footer text-muted">
 	    <dd> {{ dadosBTC.data }} </dd>
 	</div>
 </div>
+</div>
 
-<div class="card text-center mb-3">
+<div class="d-flex justify-content-center">
+<div class="card text-center mb-3 tamanhoCard">
 	  
 	<div class="card-header">
 	    <p> Bitcoin </p>
@@ -42,15 +48,17 @@
           <dd> Preço: {{ dadosCNY.precoCNY }} </dd>
           <dd> Código: CNY </dd>
           <dd> Descrição: Chinese Yuan </dd>
-    	  <button type="button" class="btn btn-info" @click.prevent="buscaCNY()"> Atualizar Preço </button>
+    	  <button type="button" class="btn btn-info tamanhaoInput" @click.prevent="buscaCNY()"> Atualizar Preço </button>
     	</div>
 
 	<div class="card-footer text-muted">
 	    <dd> {{ dadosCNY.data }} </dd>
 	</div>
 </div>
+</div>
 
-<div class="card text-center mb-3">
+<div class="d-flex justify-content-center">
+<div class="card text-center mb-3 tamanhoCard">
 	  
 	<div class="card-header">
 	    <p> Bitcoin </p>
@@ -60,12 +68,14 @@
           <dd> Preço: {{ dadosEGP.precoEGP }} </dd>
           <dd> Código: EGP </dd>
           <dd> Descrição: Egyptian Pound </dd>
-    	  <button type="button" class="btn btn-info" @click="buscaEGP()"> Atualizar Preço </button>
+    	  <button type="button" class="btn btn-info tamanhaoInput" @click="buscaEGP()"> Atualizar Preço </button>
     	</div>
 
 	<div class="card-footer text-muted">
 	    <dd> {{ dadosEGP.data }} </dd>
 	</div>
+</div>
+
 </div>
 </div>
 </div>
