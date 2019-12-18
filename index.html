@@ -8,72 +8,123 @@
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="cssBitcoin.css">
-	<title>Olá, mundo!</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" href="bitcoin-1.png" type="image/x-icon"/>
+	<title> Cotação Criptomoedas </title>
 
   </head>
   <body>
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="https://coinmarketcap.com/pt-br/all/views/all/">
+    <img src="bitcoin-1.png" width="30" height="30" class="d-inline-block align-top" alt="imagem-criptomoeda">
+    Criptomoedas
+  </a>
+
+  <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Home <span class="sr-only">(página atual)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Ação</a>
+          <a class="dropdown-item" href="#">Outra ação</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Algo mais aqui</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Desativado</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <div class="input-group">
+  	<input type="text" class="form-control" placeholder="Pesquisar" aria-label="Pesquisar" aria-describedby="button-addon2">
+  	<div class="input-group-append">
+    	<button class="btn btn-outline-light" type="button" id="button-addon2">Pesquisar</button>
+  	</div>
+	</div>
+    </form>
+  </div>
+
+<nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+
+</nav>
+
 <div class="container">
-
-
-<div id="bitcoin">
-<div class="d-flex justify-content-center">
-    <div class="card text-center mb-3 mt-3 tamanhoCard">
+<div id="criptoMoedas">
+  
+<div class="row justify-content-center">
+  <div class="col-sm">
+    <div class="card text-center mb-3 mt-3">
 		  
 	<div class="card-header">
-	    <p> Bitcoin </p>
+	    <p> Bitcoin (BTC) </p>
 	  </div>
 	  
 	<div class="card-body">
-          <dd> Preço: {{ dadosBTC.precoBTC }} </dd>
-          <dd> Código: BTC </dd>
+          <dd> Preço: {{ dadosMoedas.precoBTC }} </dd>
+          <dd> Código: USD </dd>
           <dd> Descrição: United States Dollar </dd>
-    	  <button type="button" class="btn btn-info tamanhaoInput" @click.prevent="buscaBTC()"> Atualizar Preço </button>
+    	  <button type="button" class="btn btn-info tamanhaoInput" @click.prevent="buscaValor()"> Atualizar Preço </button>
     	</div>
 
 	<div class="card-footer text-muted">
-	    <dd> {{ dadosBTC.data }} </dd>
+	    <dd> {{ dadosMoedas.data }} </dd>
 	</div>
 </div>
 </div>
 
-<div class="d-flex justify-content-center">
-<div class="card text-center mb-3 tamanhoCard">
+
+<div class="col-sm">
+<div class="card text-center mb-3 mt-3">
 	  
 	<div class="card-header">
-	    <p> Bitcoin </p>
+	    <p> Ethereum (ETH) </p>
 	  </div>
 	  
 	<div class="card-body">
-          <dd> Preço: {{ dadosCNY.precoCNY }} </dd>
-          <dd> Código: CNY </dd>
-          <dd> Descrição: Chinese Yuan </dd>
-    	  <button type="button" class="btn btn-info tamanhaoInput" @click.prevent="buscaCNY()"> Atualizar Preço </button>
+          <dd> Preço: {{ dadosMoedas.precoETH }} </dd>
+          <dd> Código: USD </dd>
+          <dd> Descrição: United States Dollar </dd>
+    	  <button type="button" class="btn btn-info tamanhaoInput" @click.prevent="buscaValor()"> Atualizar Preço </button>
     	</div>
 
 	<div class="card-footer text-muted">
-	    <dd> {{ dadosCNY.data }} </dd>
+	    <dd> {{ dadosMoedas.data }} </dd>
 	</div>
 </div>
 </div>
 
-<div class="d-flex justify-content-center">
-<div class="card text-center mb-3 tamanhoCard">
+<div class="col-sm">
+<div class="card text-center mb-3 mt-3">
 	  
 	<div class="card-header">
-	    <p> Bitcoin </p>
+	    <p> Litecoin (LTC) </p>
 	  </div>
 	  
 	<div class="card-body">
-          <dd> Preço: {{ dadosEGP.precoEGP }} </dd>
-          <dd> Código: EGP </dd>
-          <dd> Descrição: Egyptian Pound </dd>
-    	  <button type="button" class="btn btn-info tamanhaoInput" @click="buscaEGP()"> Atualizar Preço </button>
+          <dd> Preço: {{ dadosMoedas.precoLTC }} </dd>
+          <dd> Código: USD </dd>
+          <dd> Descrição: United States Dollar </dd>
+    	  <button type="button" class="btn btn-info tamanhaoInput" @click="buscaValor()"> Atualizar Preço </button>
     	</div>
 
 	<div class="card-footer text-muted">
-	    <dd> {{ dadosEGP.data }} </dd>
+	    <dd> {{ dadosMoedas.data }} </dd>
 	</div>
+</div>
 </div>
 
 </div>
@@ -86,59 +137,46 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-      const bitcoin = new Vue ({
-        el: "#bitcoin",
+      const criptoMoedas = new Vue ({
+        el: "#criptoMoedas",
         data: {
-          dadosBTC: {},
-          dadosCNY: {},
-	  dadosEGP: {},
+          dadosMoedas: {},
           precoBTC: 0,
-	  precoCNY: 0,
-	  precoEGP: 0,
-	  dataAtualizada: new Date()
+  	  	  precoETH: 0,
+  	  	  precoLTC: 0,
+  	  	  apiKey: '60cb8e29fe559cb37005813e1d796568cc3be8e528bc67fd6fe8ec9850830b14'
         },
           methods: {
-            buscaBTC() {
-              const api = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+            buscaValor() {
+              const api = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC&tsyms=USD&api_key=' + this.apiKey;
     				axios.get(api).then((response)=>{
-    					this.precoBTC = response.data.bpi.USD.rate;
-    					this.dadosBTC = {	
-    						"precoBTC": this.precoBTC,
-						"data": this.dataAtualizada
+    					this.precoBTC = response.data.BTC.USD;
+    					this.precoETH = response.data.ETH.USD;
+    					this.precoLTC = response.data.LTC.USD;
+    					this.dadosMoedas = {	
+    					"precoBTC": this.precoBTC,
+    					"precoETH": this.precoETH,
+    					"precoLTC": this.precoLTC,
+					"data": new Date()
     					};
     				
 				}).catch(( error) =>{
     					console.log('ERR:' + error);
-    				})
-          },
-	   buscaCNY() {
-              const api2 = 'https://api.coindesk.com/v1/bpi/currentprice/CNY.json';
-    				axios.get(api2).then((response)=>{
-    					this.precoCNY = response.data.bpi.CNY.rate;
-    					this.dadosCNY = {	
-    						"precoCNY": this.precoCNY,
-						"data": this.dataAtualizada
-    					};
-    				
-				}).catch(( error) =>{
-    					console.log('ERR:' + error);
-    				})
-          },
-	   buscaEGP() {
-              const api3 = 'https://api.coindesk.com/v1/bpi/currentprice/EGP.json';
-    				axios.get(api3).then((response)=>{
-    					this.precoEGP = response.data.bpi.EGP.rate;
-    					this.dadosEGP = {	
-    						"precoEGP": this.precoEGP,
-						"data": this.dataAtualizada
-    					};
-    				
-				}).catch(( error) =>{
-    					console.log('ERR:' + error);
-    				})
-          }				
+    			})
+          }  
       	}
       });
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+           navigator.serviceWorker.register('/sw.js').then( () => {
+            console.log('Service Worker Registered')
+           })
+         })
+        } else {
+            console.log('Service Worker NOT Registered');
+        }
     </script>
   </body>
 </html>
